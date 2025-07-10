@@ -1,0 +1,18 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'build',
+      '-t',
+      'asia-south1-docker.pkg.dev/$PROJECT_ID/gcp-devops/flask-app:latest',
+      '.'
+    ]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'push',
+      'asia-south1-docker.pkg.dev/$PROJECT_ID/gcp-devops/flask-app:latest'
+    ]
+
+images:
+  - 'asia-south1-docker.pkg.dev/$PROJECT_ID/gcp-devops/flask-app:latest'
+
