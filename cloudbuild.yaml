@@ -15,4 +15,4 @@ steps:
 
 images:
   - 'asia-south1-docker.pkg.dev/$PROJECT_ID/gcp-devops/flask-app:latest'
-
+    #flaskapp

@@ -2,9 +2,9 @@
 
 This is a minimal Flask app to demonstrate how to containerize a Python application using Docker.
 
-## 🛠 How to Run:
+## 🛠 How to Run
 
-### Clone the repo:
+### Clone the repo
 
 ```bash
 git clone https://github.com/your-username/python-flask-app.git
