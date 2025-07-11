@@ -1,18 +1,20 @@
 steps:
-  - name: 'gcr.io/cloud-builders/docker'
-    args: [
-      'build',
-      '-t',
-      'asia-south1-docker.pkg.dev/$PROJECT_ID/gcp-devops/flask-app:latest',
-      '.'
-    ]
+  # Step 1: Build the container image
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["build", "-t", "gcr.io/project-7989/gcp-devops-app", "."]
 
-  - name: 'gcr.io/cloud-builders/docker'
-    args: [
-      'push',
-      'asia-south1-docker.pkg.dev/$PROJECT_ID/gcp-devops/flask-app:latest'
-    ]
+  # Step 2: Push the container image to Container Registry
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/project-7989/gcp-devops-app"]
 
-images:
-  - 'asia-south1-docker.pkg.dev/$PROJECT_ID/gcp-devops/flask-app:latest'
+  # Step 3: Deploy the container image to GKE
+  - name: "gcr.io/cloud-builders/gke-deploy"
+    args:
+      - run
+      - --filename=gke.yaml
+      - --image=gcr.io/project-7989/gcp-devops-app
+      - --location=us
+      - --cluster=gcp-devops-cluster
+      - --namespace=gcp-devops-prod
+
     #flaskapp
