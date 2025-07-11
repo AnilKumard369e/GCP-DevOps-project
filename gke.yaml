@@ -36,6 +36,7 @@ spec:
       port: 80
       targetPort: 5000
   selector:
-    app: "gcp"
+    app: "gcp-devops-app"
   type: "LoadBalancer"
+
               
