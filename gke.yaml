@@ -2,20 +2,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: gcp-devops-gke
+  labels:
+    app: gcp-devops-app
 spec:
-replicas: 1
-selector:
-  matchLabels:
-    app: gcp-devops-gke
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gcp-devops-app
   template:
     metadata:
-      labels:    
-        app: gcp-devops-gke
-    containers:
-    - name: gcp-devops-gke
-      image: gcr.io/project-7989/gcp-devops-app:latest
-      ports:     
-      - containerPort: 5000
-      env:
-        - name: PORT    
-          value: "5000"
+      labels:
+        app: gcp-devops-app
+    spec:
+      containers:
+        - name: gcp-devops-app
+          image: gcr.io/project-7989/gcp-devops-app  # No :tag here; Cloud Build replaces it
+          ports:
+            - containerPort: 5000
+          env:
+            - name: PORT
+              value: "5000"
